@@ -183,3 +183,20 @@ const scissBtn = document.querySelector('#scissBtn');
 rockBtn.addEventListener('click', () => { gameResult(playRound('rock', computerPlay())); updateScoreboard(); });
 paperBtn.addEventListener('click', () => { gameResult(playRound('paper', computerPlay())); updateScoreboard(); });
 scissBtn.addEventListener('click', () => { gameResult(playRound('scissors', computerPlay())); updateScoreboard(); });
+
+
+
+
+// Event listener to image of rock
+const rockImgBtn = document.querySelector('.rockImg');
+rockImgBtn.addEventListener('click', () => alert('You clicked on the picture of the rock!"'));
+// Style rock image
+rockImgBtn.setAttribute('style', 'width: 30%;');
+
+const paperImgBtn = document.querySelector('.paperImg');
+paperImgBtn.addEventListener('click', () => alert('You clicked on the picture of the paper!"'));
+paperImgBtn.setAttribute('style', 'width: 30%;');
+
+const scissImgBtn = document.querySelector('.scissImg');
+scissImgBtn.addEventListener('click', () => alert('You clicked on the picture of the scissors!"'));
+scissImgBtn.setAttribute('style', 'width: 30%;');
