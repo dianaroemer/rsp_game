@@ -151,7 +151,11 @@ function game() {
 
 }
 
-
+function gameResult(result) {
+    const resultBanner = document.querySelector('#resultBanner');
+    resultBanner.textContent = result;
+    // resultBanner.appendChild(resultBanner);
+}
 
 function updateScoreboard() {
 
@@ -174,6 +178,6 @@ function updateScoreboard() {
 const rockBtn = document.querySelector('#rockBtn');
 const paperBtn = document.querySelector('#paperBtn');
 const scissBtn = document.querySelector('#scissBtn');
-rockBtn.addEventListener('click', () => { console.log(playRound('rock', computerPlay())); updateScoreboard(); });
-paperBtn.addEventListener('click', () => { console.log(playRound('paper', computerPlay())); updateScoreboard(); });
-scissBtn.addEventListener('click', () => { console.log(playRound('scissors', computerPlay())); updateScoreboard(); });
+rockBtn.addEventListener('click', () => { gameResult(playRound('rock', computerPlay())); updateScoreboard(); });
+paperBtn.addEventListener('click', () => { gameResult(playRound('paper', computerPlay())); updateScoreboard(); });
+scissBtn.addEventListener('click', () => { gameResult(playRound('scissors', computerPlay())); updateScoreboard(); });
