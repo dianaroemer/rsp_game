@@ -164,6 +164,7 @@ function updateScoreboard() {
     scoreboard.setAttribute('style', 'white-space: pre;');
     scoreboard.textContent = "Your score is " + playerScore + ".\r\n The Computer\'s score is " + computerScore + ".\r\n First to five points wins!";
 
+    
     if( playerScore >= 5 ) { 
         const div = document.createElement('h1');
         div.textContent = "Congratulations! You won! Refresh the page to play again!"
