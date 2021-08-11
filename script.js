@@ -1,7 +1,8 @@
-//console.log("Hello world!");
+//Point Keeping Variables
+let playerScore = 0;
+let computerScore = 0;
 
-
-
+// Generate computer choice, returning a string
 function computerPlay() {
     //Generate a random number between 1 and 3 using the Math.random() function
     let num = (Math.floor(Math.random() * 3) + 1) ;
@@ -18,36 +19,18 @@ function computerPlay() {
     throw "Function computerPlay() reached unknown value!";
 }
 
-//Point Keeping Variables
-let playerScore = 0;
-let computerScore = 0;
+
 
 function playRound ( playerSelection, computerSelection ) {
-
-    //Normalize player string into easy variable
-    let normalizedPlayerSelection = playerSelection.toLowerCase();
-
-//    console.log(typeof normalizedPlayerSelection);
-//    console.log(typeof "rock");
-
-//    console.log(normalizedPlayerSelection);
-
-//    console.log( normalizedPlayerSelection !== "rock" );
-
-    //Type check player variable against known variables
- //   if (normalizedPlayerSelection != "rock" || 
- //       normalizedPlayerSelection != "paper" || 
- //       normalizedPlayerSelection != "scissors") {
- //       return "Error! Please select Rock, Paper, or Scissors!";
- //   }
-
     //Decision Tree for game logic
+
+
     if ( computerSelection === "Rock") {
 
-        if ( normalizedPlayerSelection === "rock" ) {
+        if ( playerSelection === "rock" ) {
             return "It's a draw! Rock ties Rock";
-        } else if ( normalizedPlayerSelection === "paper") {
-            playerSelection++;
+        } else if ( playerSelection === "paper") {
+            playerScore++;
             return "You win! Paper beats Rock!";
         } else {
             computerScore++;
@@ -56,10 +39,10 @@ function playRound ( playerSelection, computerSelection ) {
 
     } else if (computerSelection === "Paper") {
 
-        if ( normalizedPlayerSelection === "rock" ) {
+        if ( playerSelection === "rock" ) {
             computerScore++;
             return "You lose! Rock loses to Paper!";
-        } else if ( normalizedPlayerSelection === "paper") {
+        } else if ( playerSelection === "paper") {
             return "It's a draw! Paper ties Paper";
         } else {
             playerScore++;
@@ -68,10 +51,10 @@ function playRound ( playerSelection, computerSelection ) {
 
     } else {
 
-        if ( normalizedPlayerSelection === "rock" ) {
+        if ( playerSelection === "rock" ) {
             playerScore++;
             return "You win! Rock beats Scissors!";
-        } else if ( normalizedPlayerSelection === "paper") {
+        } else if ( playerSelection === "paper") {
             computerScore++;
             return "You lose! Paper loses to Scissors!";
         } else {
@@ -83,11 +66,6 @@ function playRound ( playerSelection, computerSelection ) {
     throw "playRound Exception! Reached outside of decision tree without return! Perhaps playerSelection wasn't type checked?";
         
 }
-
-//Test case
-//const playerSelection = "rOCk";
-//const computerSelection = computerPlay();
-//console.log(playRound( playerSelection, computerSelection ));
 
 
 //Get player input and type check it against known variables
@@ -103,7 +81,7 @@ function playerPlay() {
             return playerInput;
     } 
     else {
-        window.alert("Did you make a type? Please select ONLY Rock, Paper, or Scissors (case insensitive!)");
+        window.alert("Did you make a typo? Please select ONLY Rock, Paper, or Scissors (case insensitive!)");
         return playerPlay();
     }
 
@@ -173,4 +151,29 @@ function game() {
 
 }
 
-game();
+
+
+function updateScoreboard() {
+
+    const scoreboard = document.querySelector("#scoreboard");
+    scoreboard.textContent = "Your score is " + playerScore + ". The Computer\'s score is " + computerScore + ". First to five points wins!";
+
+    if( playerScore >= 5 ) { 
+        const div = document.createElement('h1');
+        div.textContent = "Congratulations! You won! Refresh the page to play again!"
+        scoreboard.appendChild(div);
+    } else if ( computerScore >= 5 ) {
+        const div = document.createElement('h1');
+        div.textContent = "Ah dang! You lost! Refresh the page to play again!"
+        scoreboard.appendChild(div);
+    }
+
+}
+
+// Assigning event listeners to buttons
+const rockBtn = document.querySelector('#rockBtn');
+const paperBtn = document.querySelector('#paperBtn');
+const scissBtn = document.querySelector('#scissBtn');
+rockBtn.addEventListener('click', () => { console.log(playRound('rock', computerPlay())); updateScoreboard(); });
+paperBtn.addEventListener('click', () => { console.log(playRound('paper', computerPlay())); updateScoreboard(); });
+scissBtn.addEventListener('click', () => { console.log(playRound('scissors', computerPlay())); updateScoreboard(); });
