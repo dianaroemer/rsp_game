@@ -160,7 +160,9 @@ function gameResult(result) {
 function updateScoreboard() {
 
     const scoreboard = document.querySelector("#scoreboard");
-    scoreboard.textContent = "Your score is " + playerScore + ". The Computer\'s score is " + computerScore + ". First to five points wins!";
+    // This line is necessary so that the textContent will accept the newline characters
+    scoreboard.setAttribute('style', 'white-space: pre;');
+    scoreboard.textContent = "Your score is " + playerScore + ".\r\n The Computer\'s score is " + computerScore + ".\r\n First to five points wins!";
 
     if( playerScore >= 5 ) { 
         const div = document.createElement('h1');
